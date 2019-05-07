@@ -21,11 +21,15 @@ function getRepoContributors(repoOwner, repoName, cb) {
 }
 
 getRepoContributors(owner, name, function (err, result) {
-    console.log("Errors:", err);
-    let parsed = JSON.parse(result)
-    parsed.forEach(element => {
-        downloadImageByURL(element.avatar_url, `${element.login}.jpeg`)
-    });
+    if (owner && name) {
+        console.log("Errors:", err);
+        let parsed = JSON.parse(result)
+        parsed.forEach(element => {
+            downloadImageByURL(element.avatar_url, `${element.login}.jpeg`)
+        });
+    } else {
+        console.log('Error: Please enter a repo owner and a repo name!')
+    }
 
 });
 
