@@ -1,5 +1,5 @@
+var env = require('dotenv').config()
 var request = require('request');
-var githubToken = require('./secrets')
 var fs = require('fs')
 
 let owner = process.argv[2]
@@ -13,7 +13,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
         headers: {
             'User-Agent': 'request'
         },
-        authorization: githubToken
+        authorization: process.env.GITHUB_TOKEN
     }
     request(options, function (err, res, body) {
         cb(err, body);
